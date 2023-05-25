@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-postgresql
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: my-postgresql
+  template:
+    metadata:
+      labels:
+        app: my-postgresql
+    spec:
+      containers:
+      - name: my-postgresql
+        image: postgres:latest
+        env:
+        - name: POSTGRES_USER
+          value: "postgres"
+        - name: POSTGRES_PASSWORD
+          value: "Mypostgres@123"
+        - name: POSTGRES_DB
+          value: "threadweaver"
+        ports:
+        - containerPort: 5432
